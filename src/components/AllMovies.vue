@@ -1,5 +1,5 @@
 <template>
-  <div v-if="seen" id="hello">
+  <div v-if="seen" id="all-movies">
     <div class="content" v-for="(todo,index) in msg" :key="index">
       <h1>Title: {{todo.Title}}</h1>
       <img :src="todo.Poster" alt="">
@@ -34,7 +34,7 @@ export default {
       });
   },  
   updated() {
-    var lista = document.getElementById('hello');
+    var lista = document.getElementById('all-movies');
     const y = lista.getBoundingClientRect().top + window.pageYOffset - 350;
     if(this.seen) {
       window.scrollTo({top: y, behavior: 'smooth'});
