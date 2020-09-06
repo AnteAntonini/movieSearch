@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
+
+Vue.component('v-select', vSelect)
+
 
 Vue.use(Vuex);
+
 
 export const store = new Vuex.Store({
     strict: true,
@@ -14,11 +20,14 @@ export const store = new Vuex.Store({
             }
         ],  
         movie: '',
-        seen: false 
+        selectType: ['movie','series','episode'],
+        seen: false,
+        activeType: null 
     },
     getters: {
         msg: state => (state.todos),
-        movie: state => (state.movie)
+        movie: state => (state.movie),
+        type: state => (state.activeType)
     },
     mutations: {
         getData: (state,data) => {
@@ -26,7 +35,10 @@ export const store = new Vuex.Store({
         },
         searchMovies: (state, payload) => {
             state.movie = payload;
-        }
+        },
+        setActiveType(state, selectType) {
+            state.activeType = selectType
+          }
     },
     actions: {
         getData: (context, payload) => {

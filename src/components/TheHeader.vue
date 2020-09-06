@@ -3,7 +3,7 @@
     <nav class="nav" :class="{affix: scrollPosition}">
         <div class="container">
             <div class="logo">
-                <a href="#">Your Logo</a>
+                <a href="#top">Your Logo</a>
             </div>
             <div id="mainListDiv" class="main_list" :class="{show_list: isActive}">
                 <ul class="navlinks">
@@ -21,11 +21,19 @@
         </div>
     </nav>
     <section class="home">
-        <input type="text" placeholder="pretrazi filmove" class="trazi" :value="searchMovies" 
-            @keyup.enter="searchMovies = $event.target.value; fokus()">
+        <input type="text" placeholder="pretrazi" class="trazi" :value="searchMovies" 
+            @keyup.enter="searchMovies = $event.target.value; fokus()">        
+
+        <v-select
+          class="select-type"
+          label="text"
+          @input="setActiveType" 
+          :options="$store.state.selectType"
+          :value="$store.state.todos.type"
+        ></v-select>
     </section>
     <div v-if="seen" style="height: 200px" id="listaFilmova">
-			<h2 class="myH2">All movies with name {{searchMovies}}</h2>
+			<h2 class="myH2">All {{getType}} with name {{searchMovies}}</h2>
     </div>
   </div>
 </template>
@@ -49,6 +57,9 @@ export default {
     },
     fokus() {
       this.seen = true;
+    },
+    setActiveType(val) {
+      this.$store.commit('setActiveType', val)
     }
   },
   computed: {
@@ -59,6 +70,10 @@ export default {
         set(movie) {
         this.$store.commit('searchMovies', movie);
       }
+    },
+    getType() {
+      console.log(this.$store.getters.type)
+      return this.$store.getters.type;
     }
   },
   mounted () {
@@ -140,17 +155,20 @@ export default {
     background-size:cover;
     .trazi {
         background: rgb(220, 213, 213);
-        height: 3rem;
+        height: 33px;
         width: 17rem;
         text-align: justify;
-        border-radius: 10px;
+        border: none;
         padding: 0 50px;
         font-size: 1.2rem;
         outline: none;
         &::placeholder {
             text-align: center;
         }
-    }  
+    } 
+    .select-type {
+      background: rgb(220, 213, 213);
+    } 
 }
 
 .navTrigger {
