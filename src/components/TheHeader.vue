@@ -31,6 +31,8 @@
           :options="$store.state.selectType"
           :value="$store.state.todos.type"
         ></v-select>
+
+        <button class="btn">Pretrazi</button>
     </section>
     <div v-if="seen" style="height: 200px" id="listaFilmova">
 			<h2 class="myH2">All {{getType}} with name {{searchMovies}}</h2>
@@ -182,6 +184,19 @@ export default {
     transition: all 0.4s ease;
 }
 
+.btn {
+  background: linear-gradient(180deg, rgba(46,46,50,1) 0%, rgba(85,85,133,1) 0%, rgba(68,68,153,1) 49%, rgba(23,27,28,1) 100%, rgba(36,161,186,1) 100%);
+  position: absolute;
+  margin: 0 auto;
+  top: 60%;
+  height: 2.5rem;
+  width: 10rem;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background: linear-gradient(180deg, rgba(46,46,50,1) 0%, rgba(47,47,180,1) 0%, rgba(26,26,163,1) 49%, rgba(23,27,28,1) 100%, rgba(189,221,227,1) 100%);
+}
 
 /* Media qurey section */
 

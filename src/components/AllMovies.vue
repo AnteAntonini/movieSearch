@@ -28,9 +28,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      seen: false, 
-      currentPage: 1,
-      totalPages: 10
+      seen: false
       
     }
   },
