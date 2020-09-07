@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import vSelect from 'vue-select'
-import 'vue-select/dist/vue-select.css';
+import 'vue-select/dist/vue-select.css'
+
 
 Vue.component('v-select', vSelect)
 
@@ -20,7 +21,7 @@ export const store = new Vuex.Store({
             }
         ],  
         movie: '',
-        selectType: ['movie','series','episode'],
+        selectType: ['movie','series'],
         seen: false,
         activeType: null 
     },
@@ -41,8 +42,8 @@ export const store = new Vuex.Store({
           }
     },
     actions: {
-        getData: (context, payload) => {
-            axios.get(`http://www.omdbapi.com/?apikey=67800ad8&s=${payload}&type=movie`)
+        getData: (context, [payload, type]) => {
+            axios.get(`http://www.omdbapi.com/?apikey=67800ad8&s=${payload}&type=${type}`)   
             .then( res => {
                 console.log(res.data.Search);
                 context.commit('getData', res.data.Search);

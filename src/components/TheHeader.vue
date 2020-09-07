@@ -21,7 +21,7 @@
         </div>
     </nav>
     <section class="home">
-        <input type="text" placeholder="pretrazi" class="trazi" :value="searchMovies" 
+        <input type="text" placeholder="pretrazi naslove" class="trazi" :value="searchMovies" 
             @keyup.enter="searchMovies = $event.target.value; fokus()">        
 
         <v-select
