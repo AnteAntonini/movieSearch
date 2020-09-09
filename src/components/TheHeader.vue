@@ -21,9 +21,7 @@
         </div>
     </nav>
     <section class="home">
-        <input type="text" placeholder="pretrazi naslove" class="trazi" :value="searchMovies" 
-            @keyup.enter="searchMovies = $event.target.value; fokus()">        
-
+        <input type="text" placeholder="pretrazi naslove" class="trazi" v-model="searchMovies">        
         <v-select
           class="select-type"
           label="text"
@@ -32,7 +30,7 @@
           :value="$store.state.todos.type"
         ></v-select>
 
-        <button class="btn">Pretrazi</button>
+        <button class="btn" @click="klik(); fokus()">Pretrazi</button>
     </section>
     <div v-if="seen" style="height: 200px" id="listaFilmova">
 			<h2 class="myH2">All {{getType}} with name {{searchMovies}}</h2>
@@ -47,7 +45,8 @@ export default {
     return {
       isActive: false,
       scrollPosition: null,
-      seen : false
+      seen : false,
+      newTitle: ''
     }
   },
   methods: {
@@ -62,15 +61,18 @@ export default {
     },
     setActiveType(val) {
       this.$store.commit('setActiveType', val)
+    },
+    klik() {
+      this.$store.commit('searchMovies', this.newTitle);
     }
   },
   computed: {
     searchMovies: {
         get() {
-            return this.$store.state.movie;
+          return '';
         },
         set(movie) {
-        this.$store.commit('searchMovies', movie);
+          this.newTitle = movie;
       }
     },
     getType() {
@@ -83,7 +85,7 @@ export default {
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.updateScroll);
-}
+  }
 }
 </script>
 
@@ -99,6 +101,7 @@ export default {
     position: fixed;
     line-height: 65px;
     text-align: center;
+    z-index: 2;
     div.logo {
       float: left;
       width: auto;
@@ -155,6 +158,7 @@ export default {
     background-image: url(https://images.unsplash.com/photo-1498550744921-75f79806b8a7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b0f6908fa5e81286213c7211276e6b3d&auto=format&fit=crop&w=1500&q=80);
     background-position: center top;
     background-size:cover;
+    z-index: 1;
     .trazi {
         background: rgb(220, 213, 213);
         height: 33px;
