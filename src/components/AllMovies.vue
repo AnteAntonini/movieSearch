@@ -58,7 +58,7 @@ export default {
   },  
   updated() {
     var lista = document.getElementById('all-movies');
-    const y = lista.getBoundingClientRect().top + window.pageYOffset - 350;
+    const y = lista.getBoundingClientRect().top + window.pageYOffset - 240;
     if(this.seen) {
       window.scrollTo({top: y, behavior: 'smooth'});
     } 
@@ -77,7 +77,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: 2rem auto;
 }
 hr {
   height:3px;

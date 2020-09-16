@@ -32,8 +32,8 @@
 
         <button class="btn" @click="klik(); fokus()">Pretrazi</button>
     </section>
-    <div v-if="seen" style="height: 200px" id="listaFilmova">
-			<h2 class="myH2">All {{getType}} with name {{searchMovies}}</h2>
+    <div v-if="seen"  id="listaFilmova">
+			<h2 class="myH2">All {{getType}} with name {{newTitle}}</h2>
     </div>
   </div>
 </template>
@@ -76,7 +76,6 @@ export default {
       }
     },
     getType() {
-      console.log(this.$store.getters.type)
       return this.$store.getters.type;
     }
   },
@@ -148,6 +147,14 @@ export default {
 }
 
 /* Home section */
+
+#listaFilmova{
+  height: 5rem;
+}
+.myH2 {
+  margin-top: 2rem;
+}
+
 
 .home {
     display: flex;
