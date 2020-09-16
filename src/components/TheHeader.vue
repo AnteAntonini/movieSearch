@@ -97,7 +97,7 @@ export default {
 
 .nav {
     width: 100%;
-    height: 65px;
+    height: 100px;
     position: fixed;
     line-height: 65px;
     text-align: center;
