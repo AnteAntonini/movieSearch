@@ -95,6 +95,9 @@ export default {
 
 /* Navbar section */
 
+.the-header {
+  height: 100vh;
+}
 .nav {
     width: 100%;
     height: 65px;
